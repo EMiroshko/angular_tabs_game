@@ -1,0 +1,25 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.tabs_content {
+	width: 300px;
+	font-size: 0;
+}
+
+.game_tab {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px solid #fff;
+	background-color: #ccc;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.game_tab span {
+	
+}
