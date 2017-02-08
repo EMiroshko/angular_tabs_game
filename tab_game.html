@@ -7,12 +7,15 @@
 </head>
 <body>
 
-	<div ng-controller="TabController as game">
+	<div ng-controller="TabController as game" class="tabs_content">
       <ul>
         <li class="game_tab" ng-repeat="tab in game.tabs track by $index" ng-click="game.example(tab)">            
-            <span id="tab-{{tab.id}}">{{tab.value}}</span>
+            <span class="closed" id="tab-{{tab.id}}" data-value="{{tab.value}}">{{tab.value}}</span>
         </li>
       </ul>
+    </div>
+    <div class="description">	
+    	<span>Вам нужно найти пары цифр. Если вы открываете пару ячеек с одинаковыми цифрами, они остаются открытыми. Если вы выбираете пару с разными цифрами, все ячейки закрываются (велючая и правильно открытые) и вы начинаете заново</span>
     </div>
 
 

@@ -3,11 +3,37 @@
 	var app = angular.module("tabGame", []);
 	angular.module("myStore", []);
 	app.controller("TabController", function($scope) {
-		var tabStart = this;
-	    tabStart.tabs= createTabs(30);
+		
+		var tabStart = this,
+			cardOpened = 0,
+			checkAction = false;
+
+	    tabStart.tabs= createTabs(10);
 	    tabStart.example = function(tab) {
-	      $('#tab-'+tab.id).css("color", "red");
+	    	if (checkAction) return;
+			$('#tab-'+tab.id).removeClass('closed').addClass('opened');
+			checkAction = true;
+			setTimeout(function () {
+			    if (cardOpened) {
+			    	// debugger;
+		    		if (cardOpened === tab.value) {
+						checkGameEnd();
+		    		} else {
+		    			$('.opened').removeClass('opened').addClass('closed');
+		    		}
+		    		cardOpened = 0;
+		    	} else {
+			      	cardOpened = tab.value;
+		  		}
+		  		checkAction = false;
+			}, 300);
 	    };
+
+	    function checkGameEnd() {
+	    	if ($('.closed').length < 1) {
+	    		alert('end');
+	    	}
+	    }
 
 		function createTabs(tabs) {
 			var tabArray = [],
@@ -15,7 +41,6 @@
 			for (var i = 0; i <(tabs/2); i++){		
 				tabArray.push(i+1, i+1);				
 			}
-			console.log(tabArray);
 
 			return shuffle(tabArray).map(function(tab) {
 				return {
